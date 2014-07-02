@@ -27,11 +27,11 @@ router.get('/', function(req, res) {
 
 router.get('/:url', function(req, res) {
   var url = decodeURI(req.params.url);
-	Content.find({'url': url}, function (err, content){
+  Content.find({'url': url}, function (err, content){
     if(content.length == 0){
       console.log("hello");
       request({url: url, encoding: null, followRedirect: false}, function (error, response, body) {
-        if(err){
+        if(error){
           res.statusCode=500;
           res.send(err);
           return;
